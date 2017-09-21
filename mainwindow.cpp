@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs.hpp>
 #include <iostream>
 
 using namespace std;
@@ -36,16 +37,14 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->lbCameraInfo->setText(cameraWorking);
 
         Mat edges;
-        namedWindow("edges",1);
         for(;;)
         {
             Mat frame;
             cap >> frame; // get a new frame from camera
-            //cvtColor(frame, edges, COLOR_BGR2GRAY);
+            cvtColor(frame, edges, COLOR_BGR2Lab);
             //GaussianBlur(edges, edges, Size(7,7), 1.5, 1.5);
             //Canny(edges, edges, 0, 30, 3);
-            //imshow("edges", edges);
-            imshow("Frame",frame);
+            imshow("edges", edges);
             if(waitKey(30) >= 0) break;
         }
 
