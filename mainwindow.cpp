@@ -15,6 +15,10 @@
 #include "opencv2/videoio.hpp"
 #include <opencv2/highgui.hpp>
 #include <opencv2/video.hpp>
+#include "opencv2/core/cuda.hpp"
+#include "opencv2/video/background_segm.hpp"
+#include <opencv2/opencv.hpp>
+
 
 
 #include <iostream>
@@ -24,7 +28,6 @@ using namespace std;
 using namespace cv;
 
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -32,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
       ui->setupUi(this);
 
-       Ptr<BackgroundSubtractor> bg_model;
+//       Ptr<BackgroundSubtractor> bg_model;
 
       //Messages for the label
       QString infoCamera = "Camera Status";
@@ -46,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lbCameraInfo->setText(infoCamera);
 
     // Init background substractor
-   bg_model = createBackgroundSubtractorMOG2();
+//   bg_model = createBackgroundSubtractorMOG2();
 
     //Getting frames from the camera
     VideoCapture cap(0); // open the default camera
