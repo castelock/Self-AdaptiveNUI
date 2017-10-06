@@ -16,7 +16,8 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/video.hpp>
 #include "opencv2/core/cuda.hpp"
-#include "opencv2/video/background_segm.hpp"
+//#include "opencv2/video/background_segm.hpp"
+#include "opencv2/bgsegm.hpp"
 #include <opencv2/opencv.hpp>
 
 
@@ -32,10 +33,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
       ui->setupUi(this);
 
-//       Ptr<BackgroundSubtractor> bg_model;
+      //Variables
+      Ptr<BackgroundSubtractor> bg_model;
+      Ptr<BackgroundSubtractor> bg_model2;
+      Mat edges;
+      Mat fgMask;
+      Mat fgMask2;
+       Mat frame;
+
 
       //Messages for the label
       QString infoCamera = "Camera Status";
@@ -49,7 +56,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lbCameraInfo->setText(infoCamera);
 
     // Init background substractor
-//   bg_model = createBackgroundSubtractorMOG2();
+    bg_model = bgsegm::createBackgroundSubtractorMOG();
+    bg_model2 = createBackgroundSubtractorMOG2();
 
     //Getting frames from the camera
     VideoCapture cap(0); // open the default camera
@@ -59,15 +67,22 @@ MainWindow::MainWindow(QWidget *parent) :
         else
         ui->lbCameraInfo->setText(cameraWorking);
 
-        Mat edges;
+
         for(;;)
         {
-            Mat frame;
+
             cap >> frame; // get a new frame from camera
             cvtColor(frame, edges, COLOR_BGR2Lab);
-            imshow("Lab Color", edges);
+            //imshow("Lab Color", edges);
             if(waitKey(30) >= 0) break;
         }
+
+        bg_model -> apply(frame, fgMask);
+        bg_model2 -> apply(frame,fgMask2);
+
+        imshow("Frame",frame);
+        imshow("FGMask MOG",fgMask);
+        imshow("FGMask MOG 2",fgMask2);
 
 //    Mat inputImage = imread("/home/acg/Pictures/acglogo.png");
 //    if(!inputImage.empty()) imshow("Display Image", inputImage);
