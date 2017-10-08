@@ -20,11 +20,13 @@
 #include "opencv2/bgsegm.hpp"
 #include <opencv2/opencv.hpp>
 
-
+#include <dlib/image_processing.h>
+#include <dlib/data_io.h>
 
 #include <iostream>
 #include <sstream>
 
+using namespace dlib;
 using namespace std;
 using namespace cv;
 
@@ -36,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-
+ dlib::array<array2d<unsigned char> > images_train, images_test;
 
 
       //Variables
