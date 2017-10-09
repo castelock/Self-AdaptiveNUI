@@ -15,15 +15,18 @@ TEMPLATE = app
 INCLUDEPATH += /usr/local/include/opencv
 LIBS += -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_videoio -lopencv_imgproc -lopencv_bgsegm -lopencv_video
 
-# Inclide dlib library
-INCLUDEPATH += /usr/local/include/dlib
-LIBS += -pthread
-CONFIG += link_pkgconfig
-PKGCONFIG += x11
+# Include dlib library
+#INCLUDEPATH += /usr/local/include
+##LIBS += -pthread
+#LIBS += -L/usr/local/lib -ldlib -lpng12 -llapack -lblas -lgif
+#CONFIG += link_pkgconfig
+#PKGCONFIG += x11
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    backgroundsubtraction.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    backgroundsubtraction.h
 
 FORMS    += mainwindow.ui
