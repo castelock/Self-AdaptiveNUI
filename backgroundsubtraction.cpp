@@ -17,18 +17,47 @@ using namespace cv;
 
 BackgroundSubtraction::BackgroundSubtraction()
 {
-
+    bg_model = bgsegm::createBackgroundSubtractorMOG();
+    bg_model2 = createBackgroundSubtractorMOG2();
+    pGMG = bgsegm::createBackgroundSubtractorGMG();
+    pKNN = createBackgroundSubtractorKNN();
 }
 
 
-Mat BackgroundSubtraction::applyMOG(Mat frame, Mat fgMaskMOG){
+/* Constructor with an argument
+ * 0 = Subtractor MOG
+ * 1 = Subtractor MOG2
+ * 2 = Subtractor GMG
+ * 3 = Subtractor KNN
+*/
+BackgroundSubtraction::BackgroundSubtraction(int option){
+    switch (option) {
+    case 0:
+        bg_model= bgsegm::createBackgroundSubtractorMOG();
+        break;
+    case 1:
+        bg_model2= createBackgroundSubtractorMOG2();
+        break;
+    case 2:
+        pGMG = bgsegm::createBackgroundSubtractorGMG();
+        break;
+    case 3:
+        pKNN = createBackgroundSubtractorKNN();
+        break;
+        cout<<"Option no valid"<<endl;
+        break;
+    }
+}
+
+
+Mat* BackgroundSubtraction::applyMOG(Mat& frame, Mat& fgMaskMOG){
     bg_model = bgsegm::createBackgroundSubtractorMOG();
     bg_model->apply(frame, fgMaskMOG);
-    return fgMaskMOG;
+    return &fgMaskMOG;
 }
 
 Mat BackgroundSubtraction::applyMOG2(Mat frame, Mat fgMaskMOG2){
-    bg_model2= createBackgroundSubtractorMOG2();
+
     bg_model2->apply(frame, fgMaskMOG2);
     return fgMaskMOG2;
 }

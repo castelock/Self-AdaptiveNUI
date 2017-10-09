@@ -15,7 +15,8 @@ private:
     Ptr< BackgroundSubtractor> pKNN; // KNN Background subtractor
 public:
     BackgroundSubtraction();
-    Mat applyMOG(Mat frame, Mat fgMaskMOG);
+     BackgroundSubtraction(int option);
+    Mat* applyMOG(Mat& frame, Mat& fgMaskMOG);
     Mat applyMOG2(Mat frame,Mat fgMaskMOG2);
     Mat applyGMG(Mat frame,Mat fgMaskGMG);
     Mat applyKNN(Mat frame,Mat fgMaskKNN);
