@@ -16,7 +16,7 @@ private:
 public:
     BackgroundSubtraction();
      BackgroundSubtraction(int option);
-    Mat* applyMOG(Mat& frame, Mat& fgMaskMOG);
+    Mat applyMOG(Mat frame, Mat fgMaskMOG);
     Mat applyMOG2(Mat frame,Mat fgMaskMOG2);
     Mat applyGMG(Mat frame,Mat fgMaskGMG);
     Mat applyKNN(Mat frame,Mat fgMaskKNN);

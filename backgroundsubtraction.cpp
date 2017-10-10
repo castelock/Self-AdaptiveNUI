@@ -50,10 +50,10 @@ BackgroundSubtraction::BackgroundSubtraction(int option){
 }
 
 
-Mat* BackgroundSubtraction::applyMOG(Mat& frame, Mat& fgMaskMOG){
-    bg_model = bgsegm::createBackgroundSubtractorMOG();
+Mat BackgroundSubtraction::applyMOG(Mat frame, Mat fgMaskMOG){
+
     bg_model->apply(frame, fgMaskMOG);
-    return &fgMaskMOG;
+    return fgMaskMOG;
 }
 
 Mat BackgroundSubtraction::applyMOG2(Mat frame, Mat fgMaskMOG2){
@@ -63,13 +63,13 @@ Mat BackgroundSubtraction::applyMOG2(Mat frame, Mat fgMaskMOG2){
 }
 
 Mat BackgroundSubtraction::applyGMG(Mat frame, Mat fgMaskGMG){
-    pGMG = bgsegm::createBackgroundSubtractorGMG();
+
     pGMG ->apply(frame, fgMaskGMG);
     return fgMaskGMG;
 }
 
  Mat BackgroundSubtraction::applyKNN(Mat frame, Mat fgMaskKNN){
-     pKNN = createBackgroundSubtractorKNN();
+
      pKNN->apply(frame, fgMaskKNN);
      return fgMaskKNN;
  }
