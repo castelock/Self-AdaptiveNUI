@@ -58,9 +58,18 @@ MainWindow::MainWindow(QWidget *parent) :
     Mat resizeF;
 
     // SIFT UNDER REVISION
-    Ptr<SIFT> sift = cv::xfeatures2d::SIFT::create(...);
-    sift->detect(...);
+    cv::Ptr<Feature2D> sift = xfeatures2d::SIFT::create();
 
+
+    // Detect the Key Points
+//    vector<KeyPoint> keypoints_1, keypoints_2;
+//     sift->detect( img_1, keypoints_1 );
+//     sift->detect( img_2, keypoints_2 );
+
+//// Calculate the descriptors
+//     Mat descriptors_1, descriptors_2;
+//       sift->compute( img_1, keypoints_1, descriptors_1 );
+//       sift->compute( img_2, keypoints_2, descriptors_2 );
 
       //Messages for the label
       QString infoCamera = "Camera Status";
