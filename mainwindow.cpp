@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //     sift->detect( img_1, keypoints_1 );
 //     sift->detect( img_2, keypoints_2 );
 
-//// Calculate the descriptors
+// Calculate the descriptors
 //     Mat descriptors_1, descriptors_2;
 //       sift->compute( img_1, keypoints_1, descriptors_1 );
 //       sift->compute( img_2, keypoints_2, descriptors_2 );
@@ -102,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent) :
             fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
             //cvtColor(frame, edges, COLOR_BGR2Lab);
             //imshow("Lab Color", edges);
+
             //            imshow("Frame",frame);
 
                         imshow("FGMask MOG 2",fgMaskMOG2);
