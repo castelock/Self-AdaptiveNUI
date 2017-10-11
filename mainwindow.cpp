@@ -62,8 +62,14 @@ MainWindow::MainWindow(QWidget *parent) :
     cv::Ptr<Feature2D> sift = xfeatures2d::SIFT::create();
     // Create the pointer for SURF
     cv::Ptr<Feature2D> surf = xfeatures2d::SURF::create();
+    // Create the pointer for AKAZE
+    cv::Ptr<Feature2D> akaze = AKAZE::create();
+    // Create the pointer for BoostDesc
+    cv::Ptr<Feature2D> boostDesc = xfeatures2d::BoostDesc::create(xfeatures2d::BoostDesc::BINBOOST_256,true,5.00f);
     // Create the pointer for BriefDescriptorExtractor
     cv::Ptr<Feature2D> brief = xfeatures2d::BriefDescriptorExtractor::create();
+    // Create the pointer for DAISY
+    cv::Ptr<Feature2D> daisy = xfeatures2d::DAISY::create();
     // Create the pointer for FastFeatureDetector
     cv::Ptr<Feature2D> fast = FastFeatureDetector::create();
     // Create the pointer for ORB
@@ -158,39 +164,88 @@ MainWindow::MainWindow(QWidget *parent) :
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
-            // BriefDescriptorExtractor section
-            optAlgorithm = 3;
+            // FAST & BriefDescriptorExtractor section
+//            optAlgorithm = 3;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints with FAST
+//            fast->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors with BRIEF
+//           brief->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//           imshow("Keypoints 1", img_keypoints_1);
+
+           // FAST & DAISY section
+//           optAlgorithm = 4;
+//           // First of all it's compulsory to convert the frame to gray scale
+//           cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//           // Detect the keypoints
+//           fast->detect(grayFrame, keypoints_1 );
+//           // Calculate the descriptors
+//          daisy->compute(grayFrame, keypoints_1, descriptors_1);
+//           // Draw Keypoints
+//           drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//           // Show detected (drawn) keypoints
+//          imshow("Keypoints 1", img_keypoints_1);
+
+          // AKAZE & BoostDesc section
+//          optAlgorithm = 5;
+//          // First of all it's compulsory to convert the frame to gray scale
+//          cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//          // Detect the keypoints
+//          akaze->detect(grayFrame, keypoints_1 );
+//          // Calculate the descriptors
+//         boostDesc->compute(grayFrame, keypoints_1, descriptors_1);
+//          // Draw Keypoints
+//          drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//          // Show detected (drawn) keypoints
+//         imshow("Keypoints 1", img_keypoints_1);
+
+            // AKAZE section
+            optAlgorithm = 6;
             // First of all it's compulsory to convert the frame to gray scale
             cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
-            // Detect the keypoints with FAST
-            surf->detect(grayFrame, keypoints_1 );
-            // Calculate the descriptors with BRIEF
-           brief->compute(grayFrame, keypoints_1, descriptors_1);
+            // Detect the keypoints
+            akaze->detect(grayFrame, keypoints_1 );
+            // Calculate the descriptors
+            akaze->compute(grayFrame, keypoints_1, descriptors_1);
             // Draw Keypoints
             drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
             // Show detected (drawn) keypoints
-           imshow("Keypoints 1", img_keypoints_1);
-
+            imshow("Keypoints 1", img_keypoints_1);
 
 
             if(waitKey(10) == 27){
                 switch (optAlgorithm) {
                 case 0:
                     // SIFT
-                    imwrite("/home/acg/Pictures/Feature_Descriptors_Algth/SIFT_keypoints.jpg",img_keypoints_1);
+                    imwrite("../Feature_Descriptors_Algth/SIFT_keypoints.jpg",img_keypoints_1);
                     break;
                 case 1:
                     // SURF
-                    imwrite("/home/acg/Pictures/Feature_Descriptors_Algth/SURF_keypoints.jpg",img_keypoints_1);
+                    imwrite("../Feature_Descriptors_Algth/SURF_keypoints.jpg",img_keypoints_1);
                     break;
                 case 2:
                     // ORB
-                    imwrite("/home/acg/Pictures/Feature_Descriptors_Algth/ORB_keypoints.jpg",img_keypoints_1);
+                    imwrite("../Feature_Descriptors_Algth/ORB_keypoints.jpg",img_keypoints_1);
                     break;
                 case 3:
-                    // BoostDesc & FastFeatureDetector
-                    imwrite("/home/acg/Pictures/Feature_Descriptors_Algth/BriefAndFast_keypoints.jpg",img_keypoints_1);
+                    // FAST & BRIEF
+                    imwrite("../Feature_Descriptors_Algth/BriefAndFast_keypoints.jpg",img_keypoints_1);
                     break;
+                case 4:
+                    // FAST & DAISY
+                    imwrite("../Feature_Descriptors_Algth/FastAndDaisy_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 5:
+                    // AKAZE & BoostDesc
+                    imwrite("../Feature_Descriptors_Algth/AkazeAndBoostDesc_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 6:
+                    // AKAZE
+                    imwrite("../Feature_Descriptors_Algth/Akaze_keypoints.jpg",img_keypoints_1);
                 default:
                     cout<<"There isn't any algorithm selected"<<endl;
                     break;
