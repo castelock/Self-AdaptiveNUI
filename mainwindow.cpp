@@ -74,6 +74,12 @@ MainWindow::MainWindow(QWidget *parent) :
     cv::Ptr<Feature2D> lucid = xfeatures2d::LUCID::create();
     // Create the pointer for FREAK
     cv::Ptr<Feature2D> freak = xfeatures2d::FREAK::create();
+    // Create the pointer for MSDDetector
+    cv::Ptr<Feature2D> msd = xfeatures2d::MSDDetector::create();
+    // Create the pointer for StarDetector
+    cv::Ptr<Feature2D> star = xfeatures2d::StarDetector::create();
+    // Create the pointer for VGG
+    cv::Ptr<Feature2D> vgg = xfeatures2d::VGG::create(xfeatures2d::VGG::VGG_120,1.4f,true,true,5.0f,false);
     // Create the pointer for FastFeatureDetector
     cv::Ptr<Feature2D> fast = FastFeatureDetector::create();
     // Create the pointer for ORB
@@ -221,28 +227,69 @@ MainWindow::MainWindow(QWidget *parent) :
 //            imshow("Keypoints 1", img_keypoints_1);
 
             // FAST & LUCID section
-            optAlgorithm = 7;           
-            // Detect the keypoints
-            fast->detect(frame, keypoints_1 );
-            // Calculate the descriptors
-            lucid->compute(frame, keypoints_1, descriptors_1);
-            // Draw Keypoints
-            drawKeypoints(frame, keypoints_1, img_keypoints_1);
-            // Show detected (drawn) keypoints
-            imshow("Keypoints 1", img_keypoints_1);
+//            optAlgorithm = 7;
+//            // Detect the keypoints
+//            fast->detect(frame, keypoints_1 );
+//            // Calculate the descriptors
+//            lucid->compute(frame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(frame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
 
             // FREAK section
-            optAlgorithm = 8;
+//            optAlgorithm = 8;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            fast->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // MSDDetector section
+//            optAlgorithm = 9;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            msd->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // StarDetector & FREAK
+//            optAlgorithm = 10;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            star->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // FAST & VGG
+            optAlgorithm = 11;
             // First of all it's compulsory to convert the frame to gray scale
             cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
             // Detect the keypoints
-            fast->detect(frame, keypoints_1 );
+            fast->detect(grayFrame, keypoints_1 );
             // Calculate the descriptors
-            lucid->compute(frame, keypoints_1, descriptors_1);
+            vgg->compute(grayFrame, keypoints_1, descriptors_1);
             // Draw Keypoints
-            drawKeypoints(frame, keypoints_1, img_keypoints_1);
+            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
             // Show detected (drawn) keypoints
             imshow("Keypoints 1", img_keypoints_1);
+
+
 
 
 
@@ -279,6 +326,22 @@ MainWindow::MainWindow(QWidget *parent) :
                 case 7:
                     // FAST & LUCID
                     imwrite("../Feature_Descriptors_Algth/FastAndLucid_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 8:
+                    // FAST & FREAK
+                    imwrite("../Feature_Descriptors_Algth/FastAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 9:
+                    // MSDDetector & FREAK
+                    imwrite("../Feature_Descriptors_Algth/MSDAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 10:
+                    // StarDetector & FREAK
+                    imwrite("../Feature_Descriptors_Algth/StarAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 11:
+                    // FAST & VGG
+                    imwrite("../Feature_Descriptors_Algth/FastAndVGG_keypoints.jpg",img_keypoints_1);
                     break;
                 default:
                     cout<<"There isn't any algorithm selected"<<endl;
