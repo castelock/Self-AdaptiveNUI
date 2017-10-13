@@ -70,6 +70,10 @@ MainWindow::MainWindow(QWidget *parent) :
     cv::Ptr<Feature2D> brief = xfeatures2d::BriefDescriptorExtractor::create();
     // Create the pointer for DAISY
     cv::Ptr<Feature2D> daisy = xfeatures2d::DAISY::create();
+    // Create the pointer for LUCID
+    cv::Ptr<Feature2D> lucid = xfeatures2d::LUCID::create();
+    // Create the pointer for FREAK
+    cv::Ptr<Feature2D> freak = xfeatures2d::FREAK::create();
     // Create the pointer for FastFeatureDetector
     cv::Ptr<Feature2D> fast = FastFeatureDetector::create();
     // Create the pointer for ORB
@@ -204,17 +208,42 @@ MainWindow::MainWindow(QWidget *parent) :
 //         imshow("Keypoints 1", img_keypoints_1);
 
             // AKAZE section
-            optAlgorithm = 6;
+//            optAlgorithm = 6;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            akaze->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            akaze->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // FAST & LUCID section
+            optAlgorithm = 7;           
+            // Detect the keypoints
+            fast->detect(frame, keypoints_1 );
+            // Calculate the descriptors
+            lucid->compute(frame, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(frame, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+            imshow("Keypoints 1", img_keypoints_1);
+
+            // FREAK section
+            optAlgorithm = 8;
             // First of all it's compulsory to convert the frame to gray scale
             cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
             // Detect the keypoints
-            akaze->detect(grayFrame, keypoints_1 );
+            fast->detect(frame, keypoints_1 );
             // Calculate the descriptors
-            akaze->compute(grayFrame, keypoints_1, descriptors_1);
+            lucid->compute(frame, keypoints_1, descriptors_1);
             // Draw Keypoints
-            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+            drawKeypoints(frame, keypoints_1, img_keypoints_1);
             // Show detected (drawn) keypoints
             imshow("Keypoints 1", img_keypoints_1);
+
 
 
             if(waitKey(10) == 27){
@@ -246,6 +275,11 @@ MainWindow::MainWindow(QWidget *parent) :
                 case 6:
                     // AKAZE
                     imwrite("../Feature_Descriptors_Algth/Akaze_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 7:
+                    // FAST & LUCID
+                    imwrite("../Feature_Descriptors_Algth/FastAndLucid_keypoints.jpg",img_keypoints_1);
+                    break;
                 default:
                     cout<<"There isn't any algorithm selected"<<endl;
                     break;
