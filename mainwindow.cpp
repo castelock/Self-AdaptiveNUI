@@ -80,6 +80,16 @@ MainWindow::MainWindow(QWidget *parent) :
     cv::Ptr<Feature2D> star = xfeatures2d::StarDetector::create();
     // Create the pointer for VGG
     cv::Ptr<Feature2D> vgg = xfeatures2d::VGG::create(xfeatures2d::VGG::VGG_120,1.4f,true,true,5.0f,false);
+    // Create the pointer for AGAST
+    cv::Ptr<Feature2D> agast = AgastFeatureDetector::create();
+    // Create the pointer for BRISK
+    cv::Ptr<Feature2D> brisk = BRISK::create();
+    // Create the pointer for GFTTDetector
+    cv::Ptr<Feature2D> gftt = GFTTDetector::create();
+    // Create the pointer for KAZE
+    cv::Ptr<Feature2D> kaze = KAZE::create();
+    // Create the pointer for MSER
+    cv::Ptr<Feature2D> mser = MSER::create();
     // Create the pointer for FastFeatureDetector
     cv::Ptr<Feature2D> fast = FastFeatureDetector::create();
     // Create the pointer for ORB
@@ -93,10 +103,6 @@ MainWindow::MainWindow(QWidget *parent) :
     Mat grayFrame;
     // Option to save the image
     int optAlgorithm;
-
-
-
-
 
 
       //Messages for the label
@@ -277,18 +283,134 @@ MainWindow::MainWindow(QWidget *parent) :
 //            imshow("Keypoints 1", img_keypoints_1);
 
             // FAST & VGG
-            optAlgorithm = 11;
-            // First of all it's compulsory to convert the frame to gray scale
-            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
-            // Detect the keypoints
-            fast->detect(grayFrame, keypoints_1 );
-            // Calculate the descriptors
-            vgg->compute(grayFrame, keypoints_1, descriptors_1);
-            // Draw Keypoints
-            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
-            // Show detected (drawn) keypoints
-            imshow("Keypoints 1", img_keypoints_1);
+//            optAlgorithm = 11;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            fast->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            vgg->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
 
+            // AKAZE & VGG
+//            optAlgorithm = 12;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            akaze->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            vgg->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // SURF & VGG
+//            optAlgorithm = 13;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            surf->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            vgg->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // AGAST & SURF
+//            optAlgorithm = 14;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            agast->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // BRISK
+//            optAlgorithm = 15;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            brisk->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            brisk->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // GFTT & FREAK
+//            optAlgorithm = 16;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            gftt->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // GFTT & SURF
+//            optAlgorithm = 17;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            gftt->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // KAZE
+//            optAlgorithm = 18;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            kaze->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            kaze->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // MSER & SURF
+//            optAlgorithm = 19;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            mser->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // MSER & FREAK
+//            optAlgorithm = 20;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            mser->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
 
 
 
@@ -342,6 +464,42 @@ MainWindow::MainWindow(QWidget *parent) :
                 case 11:
                     // FAST & VGG
                     imwrite("../Feature_Descriptors_Algth/FastAndVGG_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 12:
+                    // AKAZE & VGG
+                    imwrite("../Feature_Descriptors_Algth/AkazeAndVGG_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 13:
+                    // SURF & VGG
+                    imwrite("../Feature_Descriptors_Algth/SurfAndVGG_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 14:
+                    // AGAST & SURF
+                    imwrite("../Feature_Descriptors_Algth/AgastAndSurf_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 15:
+                    // BRISK
+                    imwrite("../Feature_Descriptors_Algth/Brisk_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 16:
+                    // GFTT & FREAK
+                    imwrite("../Feature_Descriptors_Algth/GFTTAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 17:
+                    // GFTT & SURF
+                    imwrite("../Feature_Descriptors_Algth/GFTTAndSurf_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 18:
+                    // KAZE
+                    imwrite("../Feature_Descriptors_Algth/KAZE_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 19:
+                    // MSER & SURF
+                    imwrite("../Feature_Descriptors_Algth/MSERAndSurf_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 20:
+                    // MSER & FREAK
+                    imwrite("../Feature_Descriptors_Algth/MSERAndFreak_keypoints.jpg",img_keypoints_1);
                     break;
                 default:
                     cout<<"There isn't any algorithm selected"<<endl;
