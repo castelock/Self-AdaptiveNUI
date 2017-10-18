@@ -143,7 +143,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
             // SIFT section
 //            optAlgorithm = 0;
-//             First of all it's compulsory to convert the frame to gray scale
+//  //        First of all it's compulsory to convert the frame to gray scale
 //            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
 //            // Detect the keypoints
 //            sift->detect(grayFrame, keypoints_1 );
@@ -431,7 +431,7 @@ MainWindow::MainWindow(QWidget *parent) :
                     break;
                 case 3:
                     // FAST & BRIEF
-                    imwrite("../Feature_Descriptors_Algth/BriefAndFast_keypoints.jpg",img_keypoints_1);
+                    imwrite("../Feature_Descriptors_Algth/FastAndBrief_keypoints.jpg",img_keypoints_1);
                     break;
                 case 4:
                     // FAST & DAISY

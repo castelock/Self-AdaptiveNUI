@@ -13,7 +13,7 @@ TEMPLATE = app
 
 # Include OPenCV library
 INCLUDEPATH += /usr/local/include/opencv
-LIBS += -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_videoio -lopencv_imgproc -lopencv_bgsegm -lopencv_video -lopencv_xfeatures2d -lopencv_features2d
+LIBS += -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_videoio -lopencv_imgproc -lopencv_bgsegm -lopencv_video -lopencv_xfeatures2d -lopencv_features2d -lopencv_objdetect
 
 # Include dlib library
 #INCLUDEPATH += /usr/local/include
@@ -24,9 +24,11 @@ LIBS += -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lope
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    backgroundsubtraction.cpp
+    backgroundsubtraction.cpp \
+    haarcascadehands.cpp
 
 HEADERS  += mainwindow.h \
-    backgroundsubtraction.h
+    backgroundsubtraction.h \
+    haarcascadehands.h
 
 FORMS    += mainwindow.ui
