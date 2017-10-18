@@ -19,7 +19,7 @@
 #include <opencv2/opencv.hpp>
 #include "opencv2/features2d.hpp"
 
-// SIFT library
+// Algorithms library
 #include "opencv2/xfeatures2d.hpp"
 
 //#include <dlib/image_processing.h>
@@ -29,7 +29,10 @@
 #include <iostream>
 #include <sstream>
 
+//Background Subtractor
 #include "backgroundsubtraction.h"
+// Haar Cascade Hands
+#include "haarcascadehands.h"
 
 // using namespace dlib;
 using namespace std;
@@ -104,6 +107,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Option to save the image
     int optAlgorithm;
 
+    // Pointer HaarCascade for Hands
+   // HaarCascadeHands *haarCascade = new HaarCascadeHands();
+
 
       //Messages for the label
       QString infoCamera = "Camera Status";
@@ -133,11 +139,14 @@ MainWindow::MainWindow(QWidget *parent) :
             Mat frame;
             cap >> frame; // get a new frame from camera
 
+            // HAAR CASCADE
+           // haarCascade->processHaarHandsClassifier(&frame);
+
             //fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
             //cvtColor(frame, edges, COLOR_BGR2Lab);
             //imshow("Lab Color", edges);
 
-            //imshow("Frame",frame);
+//            imshow("Frame",frame);
 
             //imshow("FGMask MOG 2",fgMaskMOG2);
 

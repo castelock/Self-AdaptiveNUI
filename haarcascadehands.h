@@ -9,16 +9,16 @@ class HaarCascadeHands
 {
 public:
     HaarCascadeHands();
-    void processHaarHandsClassifier();
+    void processHaarHandsClassifier(Mat *img);
 
 private:
     Mat *img;
     CascadeClassifier cascade;
     CvMemStorage *cstorage;
     CvMemStorage *hstorage;
-    String hand_cascade_name;
+    String hand_cascade_path;
     int key;
-    void detectHands(Mat *img);
+    //void detectHands(Mat *img);
 };
 
 #endif // HAARCASCADEHANDS_H

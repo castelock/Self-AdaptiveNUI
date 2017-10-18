@@ -17,13 +17,13 @@ using namespace cv;
 HaarCascadeHands::HaarCascadeHands()
 {
     img = 0;
-    hand_cascade_name = "haarcascade_frontalface_alt.xml";
+    hand_cascade_path = "../Haar_Cascade_Hands/haarcascade_hand_1.xml";
 
 }
 
-void HaarCascadeHands::detectHands(Mat *img){
-    int px;
-    int py;
+void HaarCascadeHands::processHaarHandsClassifier(Mat *img){
+//    int px;
+//    int py;
     int edge_thresh = 1;
     // Rects to detect the hands
     vector<Rect> hands;
@@ -59,20 +59,18 @@ void HaarCascadeHands::detectHands(Mat *img){
 
 //    imshow("ImgCa
 
-    if(cascade.load("haarcascade_frontalface_alt.xml")){
-        cascade.detectMultiScale(*img,hands, 1.2, 2,  CV_HAAR_DO_CANNY_PRUNING, Size(100,100), Size(100,100));
+    if(cascade.load(hand_cascade_path)){
+        cascade.detectMultiScale(*img,hands, 1.2, 2, CV_HAAR_DO_CANNY_PRUNING, Size(100,100), Size(100,100));
 
         for (int i = 0; i < hands.size(); i++) {
             Rect r = hands[i];
-            printf("a hand is found at Rect(%d,%d,%d,%d).\n", r.x, r.y, r.width, r.height);
+            printf("A hand is found at Rect(%d,%d,%d,%d).\n", r.x, r.y, r.width, r.height);
         }
     }
 
 }
 
-void HaarCascadeHands::processHaarHandsClassifier(){
 
-}
 
 
 
