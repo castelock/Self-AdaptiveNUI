@@ -3,21 +3,22 @@
 
 #include <opencv2/opencv.hpp>
 
-using namespace cv;
+//#include "tools.h"
 
 class HaarCascadeHands
 {
 public:
     HaarCascadeHands();
-    void processHaarHandsClassifier(Mat *img);
+    void processHaarHandsClassifier(cv::Mat *img, int& cont);
 
 private:
-    Mat *img;
-    CascadeClassifier cascade;
+   cv :: Mat *img;
+    cv::CascadeClassifier cascade;
     CvMemStorage *cstorage;
     CvMemStorage *hstorage;
-    String hand_cascade_path;
+   std:: string hand_cascade_path;
     int key;
+   // Tools *tool;
     //void detectHands(Mat *img);
 };
 

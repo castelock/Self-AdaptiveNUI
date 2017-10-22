@@ -106,9 +106,11 @@ MainWindow::MainWindow(QWidget *parent) :
     Mat grayFrame;
     // Option to save the image
     int optAlgorithm;
+    // Counter to take the pictures in Haar Cascade
+    int cont=0;
 
     // Pointer HaarCascade for Hands
-   // HaarCascadeHands *haarCascade = new HaarCascadeHands();
+    HaarCascadeHands *haarCascade = new HaarCascadeHands();
 
 
       //Messages for the label
@@ -140,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
             cap >> frame; // get a new frame from camera
 
             // HAAR CASCADE
-           // haarCascade->processHaarHandsClassifier(&frame);
+            haarCascade->processHaarHandsClassifier(&frame,cont);
 
             //fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
             //cvtColor(frame, edges, COLOR_BGR2Lab);
