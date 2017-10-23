@@ -136,7 +136,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //        ui->lbCameraInfo->setText(cameraWorking);
 
 
-        for(;;)
+        while(waitKey(1)!=27)
         {
             Mat frame;
             cap >> frame; // get a new frame from camera
@@ -426,99 +426,99 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-            if(waitKey(10) == 27){
-                switch (optAlgorithm) {
-                case 0:
-                    // SIFT
-                    imwrite("../Feature_Descriptors_Algth/SIFT_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 1:
-                    // SURF
-                    imwrite("../Feature_Descriptors_Algth/SURF_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 2:
-                    // ORB
-                    imwrite("../Feature_Descriptors_Algth/ORB_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 3:
-                    // FAST & BRIEF
-                    imwrite("../Feature_Descriptors_Algth/FastAndBrief_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 4:
-                    // FAST & DAISY
-                    imwrite("../Feature_Descriptors_Algth/FastAndDaisy_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 5:
-                    // AKAZE & BoostDesc
-                    imwrite("../Feature_Descriptors_Algth/AkazeAndBoostDesc_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 6:
-                    // AKAZE
-                    imwrite("../Feature_Descriptors_Algth/Akaze_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 7:
-                    // FAST & LUCID
-                    imwrite("../Feature_Descriptors_Algth/FastAndLucid_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 8:
-                    // FAST & FREAK
-                    imwrite("../Feature_Descriptors_Algth/FastAndFreak_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 9:
-                    // MSDDetector & FREAK
-                    imwrite("../Feature_Descriptors_Algth/MSDAndFreak_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 10:
-                    // StarDetector & FREAK
-                    imwrite("../Feature_Descriptors_Algth/StarAndFreak_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 11:
-                    // FAST & VGG
-                    imwrite("../Feature_Descriptors_Algth/FastAndVGG_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 12:
-                    // AKAZE & VGG
-                    imwrite("../Feature_Descriptors_Algth/AkazeAndVGG_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 13:
-                    // SURF & VGG
-                    imwrite("../Feature_Descriptors_Algth/SurfAndVGG_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 14:
-                    // AGAST & SURF
-                    imwrite("../Feature_Descriptors_Algth/AgastAndSurf_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 15:
-                    // BRISK
-                    imwrite("../Feature_Descriptors_Algth/Brisk_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 16:
-                    // GFTT & FREAK
-                    imwrite("../Feature_Descriptors_Algth/GFTTAndFreak_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 17:
-                    // GFTT & SURF
-                    imwrite("../Feature_Descriptors_Algth/GFTTAndSurf_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 18:
-                    // KAZE
-                    imwrite("../Feature_Descriptors_Algth/KAZE_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 19:
-                    // MSER & SURF
-                    imwrite("../Feature_Descriptors_Algth/MSERAndSurf_keypoints.jpg",img_keypoints_1);
-                    break;
-                case 20:
-                    // MSER & FREAK
-                    imwrite("../Feature_Descriptors_Algth/MSERAndFreak_keypoints.jpg",img_keypoints_1);
-                    break;
-                default:
-                    cout<<"There isn't any algorithm selected"<<endl;
-                    break;
-                }
+//            if(waitKey(10) == 27){
+//                switch (optAlgorithm) {
+//                case 0:
+//                    // SIFT
+//                    imwrite("../Feature_Descriptors_Algth/SIFT_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 1:
+//                    // SURF
+//                    imwrite("../Feature_Descriptors_Algth/SURF_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 2:
+//                    // ORB
+//                    imwrite("../Feature_Descriptors_Algth/ORB_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 3:
+//                    // FAST & BRIEF
+//                    imwrite("../Feature_Descriptors_Algth/FastAndBrief_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 4:
+//                    // FAST & DAISY
+//                    imwrite("../Feature_Descriptors_Algth/FastAndDaisy_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 5:
+//                    // AKAZE & BoostDesc
+//                    imwrite("../Feature_Descriptors_Algth/AkazeAndBoostDesc_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 6:
+//                    // AKAZE
+//                    imwrite("../Feature_Descriptors_Algth/Akaze_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 7:
+//                    // FAST & LUCID
+//                    imwrite("../Feature_Descriptors_Algth/FastAndLucid_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 8:
+//                    // FAST & FREAK
+//                    imwrite("../Feature_Descriptors_Algth/FastAndFreak_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 9:
+//                    // MSDDetector & FREAK
+//                    imwrite("../Feature_Descriptors_Algth/MSDAndFreak_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 10:
+//                    // StarDetector & FREAK
+//                    imwrite("../Feature_Descriptors_Algth/StarAndFreak_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 11:
+//                    // FAST & VGG
+//                    imwrite("../Feature_Descriptors_Algth/FastAndVGG_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 12:
+//                    // AKAZE & VGG
+//                    imwrite("../Feature_Descriptors_Algth/AkazeAndVGG_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 13:
+//                    // SURF & VGG
+//                    imwrite("../Feature_Descriptors_Algth/SurfAndVGG_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 14:
+//                    // AGAST & SURF
+//                    imwrite("../Feature_Descriptors_Algth/AgastAndSurf_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 15:
+//                    // BRISK
+//                    imwrite("../Feature_Descriptors_Algth/Brisk_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 16:
+//                    // GFTT & FREAK
+//                    imwrite("../Feature_Descriptors_Algth/GFTTAndFreak_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 17:
+//                    // GFTT & SURF
+//                    imwrite("../Feature_Descriptors_Algth/GFTTAndSurf_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 18:
+//                    // KAZE
+//                    imwrite("../Feature_Descriptors_Algth/KAZE_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 19:
+//                    // MSER & SURF
+//                    imwrite("../Feature_Descriptors_Algth/MSERAndSurf_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                case 20:
+//                    // MSER & FREAK
+//                    imwrite("../Feature_Descriptors_Algth/MSERAndFreak_keypoints.jpg",img_keypoints_1);
+//                    break;
+//                default:
+//                    cout<<"There isn't any algorithm selected"<<endl;
+//                    break;
+//                }
 
-                break;
-            }
+//                break;
+//            }
 
             //if(waitKey(10) == 27) break;
         }
