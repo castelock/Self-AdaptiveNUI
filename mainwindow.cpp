@@ -136,15 +136,15 @@ MainWindow::MainWindow(QWidget *parent) :
 //        ui->lbCameraInfo->setText(cameraWorking);
 
 
-        while(waitKey(1)!=27)
+        for(;;)
         {
             Mat frame;
             cap >> frame; // get a new frame from camera
 
             // HAAR CASCADE
-            haarCascade->processHaarHandsClassifier(&frame,cont);
+//            haarCascade->processHaarHandsClassifier(&frame,cont);
 
-            //fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
+            fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
             //cvtColor(frame, edges, COLOR_BGR2Lab);
             //imshow("Lab Color", edges);
 
@@ -165,16 +165,40 @@ MainWindow::MainWindow(QWidget *parent) :
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
+            // SIFT section with Background Subtraction
+//            optAlgorithm = 0;
+//  //        First of all it's compulsory to convert the frame to gray scale
+//            //cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            sift->detect(fgMaskMOG2, keypoints_1 );
+//            // Calculate the descriptors
+//            sift->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
             // SURF section
 //            optAlgorithm = 1;
-//            // First of all it's compulsory to convert the frame to gray scale
-//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
 //            // Detect the keypoints
 //            surf->detect(grayFrame, keypoints_1 );
 //            // Calculate the descriptors
 //            surf->compute(grayFrame, keypoints_1, descriptors_1);
 //            // Draw Keypoints
 //            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // SURF section with Background Subtraction
+//            optAlgorithm = 1;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            //cvtColor(fgMaskMOG2, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            surf->detect(fgMaskMOG2, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
@@ -229,6 +253,17 @@ MainWindow::MainWindow(QWidget *parent) :
 //          drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
 //          // Show detected (drawn) keypoints
 //         imshow("Keypoints 1", img_keypoints_1);
+
+            // AKAZE & BoostDesc with Background Subtraction
+            optAlgorithm = 5;
+            // Detect the keypoints
+            akaze->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+           boostDesc->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+           imshow("Keypoints 1", img_keypoints_1);
 
             // AKAZE section
 //            optAlgorithm = 6;
@@ -424,103 +459,105 @@ MainWindow::MainWindow(QWidget *parent) :
 //            imshow("Keypoints 1", img_keypoints_1);
 
 
+           // Get the pressed value
+                  int key = (waitKey(1) & 0xFF);
+
+            if(key == 99){
+                switch (optAlgorithm) {
+                case 0:
+                    // SIFT
+                    imwrite("../Feature_Descriptors_Algth/SIFT_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 1:
+                    // SURF
+                    imwrite("../Feature_Descriptors_Algth/SURF_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 2:
+                    // ORB
+                    imwrite("../Feature_Descriptors_Algth/ORB_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 3:
+                    // FAST & BRIEF
+                    imwrite("../Feature_Descriptors_Algth/FastAndBrief_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 4:
+                    // FAST & DAISY
+                    imwrite("../Feature_Descriptors_Algth/FastAndDaisy_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 5:
+                    // AKAZE & BoostDesc
+                    imwrite("../Feature_Descriptors_Algth/AkazeAndBoostDesc_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 6:
+                    // AKAZE
+                    imwrite("../Feature_Descriptors_Algth/Akaze_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 7:
+                    // FAST & LUCID
+                    imwrite("../Feature_Descriptors_Algth/FastAndLucid_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 8:
+                    // FAST & FREAK
+                    imwrite("../Feature_Descriptors_Algth/FastAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 9:
+                    // MSDDetector & FREAK
+                    imwrite("../Feature_Descriptors_Algth/MSDAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 10:
+                    // StarDetector & FREAK
+                    imwrite("../Feature_Descriptors_Algth/StarAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 11:
+                    // FAST & VGG
+                    imwrite("../Feature_Descriptors_Algth/FastAndVGG_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 12:
+                    // AKAZE & VGG
+                    imwrite("../Feature_Descriptors_Algth/AkazeAndVGG_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 13:
+                    // SURF & VGG
+                    imwrite("../Feature_Descriptors_Algth/SurfAndVGG_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 14:
+                    // AGAST & SURF
+                    imwrite("../Feature_Descriptors_Algth/AgastAndSurf_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 15:
+                    // BRISK
+                    imwrite("../Feature_Descriptors_Algth/Brisk_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 16:
+                    // GFTT & FREAK
+                    imwrite("../Feature_Descriptors_Algth/GFTTAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 17:
+                    // GFTT & SURF
+                    imwrite("../Feature_Descriptors_Algth/GFTTAndSurf_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 18:
+                    // KAZE
+                    imwrite("../Feature_Descriptors_Algth/KAZE_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 19:
+                    // MSER & SURF
+                    imwrite("../Feature_Descriptors_Algth/MSERAndSurf_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 20:
+                    // MSER & FREAK
+                    imwrite("../Feature_Descriptors_Algth/MSERAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                default:
+                    cout<<"There isn't any algorithm selected"<<endl;
+                    break;
+                }
 
 
-//            if(waitKey(10) == 27){
-//                switch (optAlgorithm) {
-//                case 0:
-//                    // SIFT
-//                    imwrite("../Feature_Descriptors_Algth/SIFT_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 1:
-//                    // SURF
-//                    imwrite("../Feature_Descriptors_Algth/SURF_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 2:
-//                    // ORB
-//                    imwrite("../Feature_Descriptors_Algth/ORB_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 3:
-//                    // FAST & BRIEF
-//                    imwrite("../Feature_Descriptors_Algth/FastAndBrief_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 4:
-//                    // FAST & DAISY
-//                    imwrite("../Feature_Descriptors_Algth/FastAndDaisy_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 5:
-//                    // AKAZE & BoostDesc
-//                    imwrite("../Feature_Descriptors_Algth/AkazeAndBoostDesc_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 6:
-//                    // AKAZE
-//                    imwrite("../Feature_Descriptors_Algth/Akaze_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 7:
-//                    // FAST & LUCID
-//                    imwrite("../Feature_Descriptors_Algth/FastAndLucid_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 8:
-//                    // FAST & FREAK
-//                    imwrite("../Feature_Descriptors_Algth/FastAndFreak_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 9:
-//                    // MSDDetector & FREAK
-//                    imwrite("../Feature_Descriptors_Algth/MSDAndFreak_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 10:
-//                    // StarDetector & FREAK
-//                    imwrite("../Feature_Descriptors_Algth/StarAndFreak_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 11:
-//                    // FAST & VGG
-//                    imwrite("../Feature_Descriptors_Algth/FastAndVGG_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 12:
-//                    // AKAZE & VGG
-//                    imwrite("../Feature_Descriptors_Algth/AkazeAndVGG_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 13:
-//                    // SURF & VGG
-//                    imwrite("../Feature_Descriptors_Algth/SurfAndVGG_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 14:
-//                    // AGAST & SURF
-//                    imwrite("../Feature_Descriptors_Algth/AgastAndSurf_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 15:
-//                    // BRISK
-//                    imwrite("../Feature_Descriptors_Algth/Brisk_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 16:
-//                    // GFTT & FREAK
-//                    imwrite("../Feature_Descriptors_Algth/GFTTAndFreak_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 17:
-//                    // GFTT & SURF
-//                    imwrite("../Feature_Descriptors_Algth/GFTTAndSurf_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 18:
-//                    // KAZE
-//                    imwrite("../Feature_Descriptors_Algth/KAZE_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 19:
-//                    // MSER & SURF
-//                    imwrite("../Feature_Descriptors_Algth/MSERAndSurf_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                case 20:
-//                    // MSER & FREAK
-//                    imwrite("../Feature_Descriptors_Algth/MSERAndFreak_keypoints.jpg",img_keypoints_1);
-//                    break;
-//                default:
-//                    cout<<"There isn't any algorithm selected"<<endl;
-//                    break;
-//                }
+            }
+            else if(key == 27)
+                break;
 
-//                break;
-//            }
-
-            //if(waitKey(10) == 27) break;
         }
 
 

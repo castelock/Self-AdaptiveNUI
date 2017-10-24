@@ -18,7 +18,7 @@ using namespace cv;
 HaarCascadeHands::HaarCascadeHands()
 {
     img = 0;
-    hand_cascade_path = "../Haar_Cascade_Hands/palm_balaje.xml";
+    hand_cascade_path = "../Haar_Cascade_Hands/Hand_Cascade_1.xml";
 
 }
 
@@ -61,7 +61,6 @@ void HaarCascadeHands::processHaarHandsClassifier(Mat *img, int& cont){
 //        cvPoint( r->x + r->width, r->y + r->height ),
 //        CV_RGB( 255, 0, 0 ), 1, 8, 0 );
 
-//    imshow("ImgCa
 
     if(cascade.load(hand_cascade_path)){
 
@@ -76,7 +75,7 @@ void HaarCascadeHands::processHaarHandsClassifier(Mat *img, int& cont){
             imshow("Hand detected", *img);
             // Increasing the counter
             cont++;
-            string path = "../Haar_Cascade_Hands/Pictures/palm_balaje";
+            string path = "../Haar_Cascade_Hands/Pictures/Hand_Last_Cascade";
             string ext = ".jpg";
 
             // ****Convert int to string *****
