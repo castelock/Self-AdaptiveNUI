@@ -142,9 +142,9 @@ MainWindow::MainWindow(QWidget *parent) :
             cap >> frame; // get a new frame from camera
 
             // HAAR CASCADE
-//            haarCascade->processHaarHandsClassifier(&frame,cont);
+            haarCascade->processHaarHandsClassifier(&frame,cont);
 
-            fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
+//            fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
             //cvtColor(frame, edges, COLOR_BGR2Lab);
             //imshow("Lab Color", edges);
 
@@ -255,15 +255,15 @@ MainWindow::MainWindow(QWidget *parent) :
 //         imshow("Keypoints 1", img_keypoints_1);
 
             // AKAZE & BoostDesc with Background Subtraction
-            optAlgorithm = 5;
-            // Detect the keypoints
-            akaze->detect(fgMaskMOG2, keypoints_1 );
-            // Calculate the descriptors
-           boostDesc->compute(fgMaskMOG2, keypoints_1, descriptors_1);
-            // Draw Keypoints
-            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
-            // Show detected (drawn) keypoints
-           imshow("Keypoints 1", img_keypoints_1);
+//            optAlgorithm = 5;
+//            // Detect the keypoints
+//            akaze->detect(fgMaskMOG2, keypoints_1 );
+//            // Calculate the descriptors
+//           boostDesc->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//           imshow("Keypoints 1", img_keypoints_1);
 
             // AKAZE section
 //            optAlgorithm = 6;
