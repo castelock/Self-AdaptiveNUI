@@ -22,6 +22,9 @@
 // Algorithms library
 #include "opencv2/xfeatures2d.hpp"
 
+//Tracking
+#include <opencv2/tracking.hpp>
+
 //#include <dlib/image_processing.h>
 //#include <dlib/data_io.h>
 //#include <dlib/image_processing/frontal_face_detector.h>
@@ -108,6 +111,8 @@ MainWindow::MainWindow(QWidget *parent) :
     int optAlgorithm;
     // Counter to take the pictures in Haar Cascade
     int cont=0;
+    // Tracker
+    Ptr<Tracker> tracker = TrackerKCF::create();
 
     // Pointer HaarCascade for Hands
     HaarCascadeHands *haarCascade = new HaarCascadeHands();
@@ -142,9 +147,9 @@ MainWindow::MainWindow(QWidget *parent) :
             cap >> frame; // get a new frame from camera
 
             // HAAR CASCADE
-            haarCascade->processHaarHandsClassifier(&frame,cont);
+//            haarCascade->processHaarHandsClassifier(&frame,cont);
 
-//            fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
+            fgMaskMOG2 = bs -> applyMOG2(frame,fgMaskMOG2);
             //cvtColor(frame, edges, COLOR_BGR2Lab);
             //imshow("Lab Color", edges);
 
@@ -167,8 +172,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
             // SIFT section with Background Subtraction
 //            optAlgorithm = 0;
-//  //        First of all it's compulsory to convert the frame to gray scale
-//            //cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
 //            // Detect the keypoints
 //            sift->detect(fgMaskMOG2, keypoints_1 );
 //            // Calculate the descriptors
@@ -183,18 +186,17 @@ MainWindow::MainWindow(QWidget *parent) :
 //            // Detect the keypoints
 //            surf->detect(grayFrame, keypoints_1 );
 //            // Calculate the descriptors
-//            surf->compute(grayFrame, keypoints_1, descriptors_1);
+//            surf->compute(grayFrame, keypoints_1, descriptors_1);* argv ){
+            // sh
 //            // Draw Keypoints
 //            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
-            // SURF section with Background Subtraction
-//            optAlgorithm = 1;
-//            // First of all it's compulsory to convert the frame to gray scale
-//            //cvtColor(fgMaskMOG2, grayFrame, COLOR_BGR2GRAY);
+            // SURF with Background Subtraction
+//            optAlgorithm = 21;
 //            // Detect the keypoints
-//            surf->detect(fgMaskMOG2, keypoints_1 );
+//            surf->detect(fgMaskMOG2, keypoints_1);
 //            // Calculate the descriptors
 //            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
 //            // Draw Keypoints
@@ -255,7 +257,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //         imshow("Keypoints 1", img_keypoints_1);
 
             // AKAZE & BoostDesc with Background Subtraction
-//            optAlgorithm = 5;
+//            optAlgorithm = 22;
 //            // Detect the keypoints
 //            akaze->detect(fgMaskMOG2, keypoints_1 );
 //            // Calculate the descriptors
@@ -289,7 +291,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
-            // FREAK section
+            // FAST & FREAK section
 //            optAlgorithm = 8;
 //            // First of all it's compulsory to convert the frame to gray scale
 //            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
@@ -299,6 +301,17 @@ MainWindow::MainWindow(QWidget *parent) :
 //            freak->compute(grayFrame, keypoints_1, descriptors_1);
 //            // Draw Keypoints
 //            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // FAST & FREAK with Background Subtraction
+//            optAlgorithm = 23;
+//            // Detect the keypoints
+//            fast->detect(fgMaskMOG2, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
@@ -379,6 +392,18 @@ MainWindow::MainWindow(QWidget *parent) :
 //            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
+
+            // AGAST & SURF with Background Subtraction
+            optAlgorithm = 24;
+            // Detect the keypoints
+            agast->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+            imshow("Keypoints 1", img_keypoints_1);
+
 
             // BRISK
 //            optAlgorithm = 15;
@@ -547,6 +572,22 @@ MainWindow::MainWindow(QWidget *parent) :
                 case 20:
                     // MSER & FREAK
                     imwrite("../Feature_Descriptors_Algth/MSERAndFreak_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 21:
+                    // SURF with Background Subtraction
+                    imwrite("../Feature_Descriptors_Algth/SURF_BS_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 22:
+                   // AKAZE & BoostDesc with Background Subtraction
+                    imwrite("../Feature_Descriptors_Algth/AKAZEAndBoostDesc_BS_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 23:
+                    // FAST & FREAK with Background Subtraction
+                    imwrite("../Feature_Descriptors_Algth/FastAndFreak_BS_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 24:
+                    // AGAST & SURF with Background Subtraction
+                    imwrite("../Feature_Descriptors_Algth/AgastAndSurf_BS_keypoints.jpg",img_keypoints_1);
                     break;
                 default:
                     cout<<"There isn't any algorithm selected"<<endl;
