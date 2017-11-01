@@ -25,10 +25,12 @@ LIBS += -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lope
 SOURCES += main.cpp\
         mainwindow.cpp \
     backgroundsubtraction.cpp \
-    haarcascadehands.cpp
+    haarcascadehands.cpp \
+    intelligentmodule.cpp
 
 HEADERS  += mainwindow.h \
     backgroundsubtraction.h \
-    haarcascadehands.h
+    haarcascadehands.h \
+    intelligentmodule.h
 
 FORMS    += mainwindow.ui
