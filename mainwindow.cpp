@@ -394,15 +394,15 @@ MainWindow::MainWindow(QWidget *parent) :
 //            imshow("Keypoints 1", img_keypoints_1);
 
             // AGAST & SURF with Background Subtraction
-//            optAlgorithm = 24;
-//            // Detect the keypoints
-//            agast->detect(fgMaskMOG2, keypoints_1 );
-//            // Calculate the descriptors
-//            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
-//            // Draw Keypoints
-//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
-//            // Show detected (drawn) keypoints
-//            imshow("Keypoints 1", img_keypoints_1);
+            optAlgorithm = 24;
+            // Detect the keypoints
+            agast->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+            imshow("Keypoints 1", img_keypoints_1);
 
 
             // BRISK
