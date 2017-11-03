@@ -394,15 +394,15 @@ MainWindow::MainWindow(QWidget *parent) :
 //            imshow("Keypoints 1", img_keypoints_1);
 
             // AGAST & SURF with Background Subtraction
-            optAlgorithm = 24;
-            // Detect the keypoints
-            agast->detect(fgMaskMOG2, keypoints_1 );
-            // Calculate the descriptors
-            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
-            // Draw Keypoints
-            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
-            // Show detected (drawn) keypoints
-            imshow("Keypoints 1", img_keypoints_1);
+//            optAlgorithm = 24;
+//            // Detect the keypoints
+//            agast->detect(fgMaskMOG2, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
 
 
             // BRISK
@@ -483,6 +483,120 @@ MainWindow::MainWindow(QWidget *parent) :
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
+            /************************* BINARY DESCRIPTORS ***************************/
+
+            // AGAST & FREAK with Background Subtraction
+            optAlgorithm = 240;
+            // Detect the keypoints
+            agast->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+            freak->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+            imshow("Keypoints 1", img_keypoints_1);
+
+            // AGAST & BRISK with Background Subtraction
+            optAlgorithm = 240;
+            // Detect the keypoints
+            agast->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+            brisk->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+            imshow("Keypoints 1", img_keypoints_1);
+
+            // AGAST & BRIEF with Background Subtraction
+            optAlgorithm = 24;
+            // Detect the keypoints
+            agast->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+            brief->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+            imshow("Keypoints 1", img_keypoints_1);
+
+            // AGAST & SURF with Background Subtraction
+//            optAlgorithm = 240;
+//            // Detect the keypoints
+//            agast->detect(fgMaskMOG2, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // FAST & BRIEF with BackgroundSubtraction
+            optAlgorithm = 100;
+            // Detect the keypoints with FAST
+            fast->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors with BRIEF
+           brief->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+           imshow("Keypoints 1", img_keypoints_1);
+
+           // FAST & BRISK with BackgroundSubtraction
+            optAlgorithm = 150;
+            // Detect the keypoints
+            brisk->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+            brisk->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+            imshow("Keypoints 1", img_keypoints_1);
+
+            // FAST & FREAK with Background Subtraction
+//            optAlgorithm = 230;
+//            // Detect the keypoints
+//            fast->detect(fgMaskMOG2, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+            // AKAZE & FREAK with Background Subtraction
+            optAlgorithm = 220;
+            // Detect the keypoints
+            akaze->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+           freak->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+           imshow("Keypoints 1", img_keypoints_1);
+
+           // AKAZE & BRISK with Background Subtraction
+            optAlgorithm = 220;
+            // Detect the keypoints
+            akaze->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+           brisk->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+           imshow("Keypoints 1", img_keypoints_1);
+
+           // AKAZE & BRIEF with Background Subtraction
+            optAlgorithm = 220;
+            // Detect the keypoints
+            akaze->detect(fgMaskMOG2, keypoints_1 );
+            // Calculate the descriptors
+           brief->compute(fgMaskMOG2, keypoints_1, descriptors_1);
+            // Draw Keypoints
+            drawKeypoints(fgMaskMOG2, keypoints_1, img_keypoints_1);
+            // Show detected (drawn) keypoints
+           imshow("Keypoints 1", img_keypoints_1);
+
+
+/************************* END BINARY DESCRIPTORS ***************************/
 
            // Get the pressed value
                   int key = (waitKey(1) & 0xFF);
