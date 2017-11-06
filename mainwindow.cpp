@@ -497,17 +497,17 @@ MainWindow::MainWindow(QWidget *parent) :
 //            imshow("Keypoints 1", img_keypoints_1);
 
             // AGAST & FREAK
-            optAlgorithm = 26;
-            // First of all it's compulsory to convert the frame to gray scale
-            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
-            // Detect the keypoints
-            agast->detect(grayFrame, keypoints_1 );
-            // Calculate the descriptors
-            freak->compute(grayFrame, keypoints_1, descriptors_1);
-            // Draw Keypoints
-            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
-            // Show detected (drawn) keypoints
-            imshow("Keypoints 1", img_keypoints_1);
+//            optAlgorithm = 26;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            agast->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            freak->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
 
             // AGAST & BRISK with Background Subtraction
 //            optAlgorithm = 27;
@@ -569,17 +569,17 @@ MainWindow::MainWindow(QWidget *parent) :
 //            imshow("Keypoints 1", img_keypoints_1);
 
             // AGAST & SURF
-            //            optAlgorithm = 32;
-            // First of all it's compulsory to convert the frame to gray scale
-            //            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
-            //            // Detect the keypoints
-            //            agast->detect(grayFrame, keypoints_1 );
-            //            // Calculate the descriptors
-            //            surf->compute(grayFrame, keypoints_1, descriptors_1);
-            //            // Draw Keypoints
-            //            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
-            //            // Show detected (drawn) keypoints
-            //            imshow("Keypoints 1", img_keypoints_1);
+//            optAlgorithm = 32;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            agast->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
 
             // FAST & BRIEF with BackgroundSubtraction
 //            optAlgorithm = 33;
@@ -653,6 +653,20 @@ MainWindow::MainWindow(QWidget *parent) :
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
 
+            // FAST & SURF
+//            optAlgorithm = 45;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            fast->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
+
             // AKAZE & FREAK with Background Subtraction
 //            optAlgorithm = 39;
 //            // Detect the keypoints
@@ -724,6 +738,20 @@ MainWindow::MainWindow(QWidget *parent) :
 //            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
 //            // Show detected (drawn) keypoints
 //            imshow("Keypoints 1", img_keypoints_1);
+
+            // AKAZE & SURF
+//            optAlgorithm = 46;
+//            // First of all it's compulsory to convert the frame to gray scale
+//            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
+//            // Detect the keypoints
+//            akaze->detect(grayFrame, keypoints_1 );
+//            // Calculate the descriptors
+//            surf->compute(grayFrame, keypoints_1, descriptors_1);
+//            // Draw Keypoints
+//            drawKeypoints(grayFrame, keypoints_1, img_keypoints_1);
+//            // Show detected (drawn) keypoints
+//            imshow("Keypoints 1", img_keypoints_1);
+
 
 
 /************************* END BINARY DESCRIPTORS ***************************/
@@ -912,6 +940,14 @@ MainWindow::MainWindow(QWidget *parent) :
                 case 44:
                     // AKAZE & BRIEF
                     imwrite("../Feature_Descriptors_Algth/Binary_Descriptors/AkazeAndBrief_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 45:
+                    // FAST & SURF
+                    imwrite("../Feature_Descriptors_Algth/Binary_Descriptors/FastAndSURF_keypoints.jpg",img_keypoints_1);
+                    break;
+                case 46:
+                    // AKAZE & SURF
+                    imwrite("../Feature_Descriptors_Algth/Binary_Descriptors/AkazeAndSURF_keypoints.jpg",img_keypoints_1);
                     break;
                 default:
                     cout<<"There isn't any algorithm selected"<<endl;
