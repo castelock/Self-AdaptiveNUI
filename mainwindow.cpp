@@ -162,7 +162,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //  //        First of all it's compulsory to convert the frame to gray scale
 //            cvtColor(frame, grayFrame, COLOR_BGR2GRAY);
 //            // Detect the keypoints
-//            sift->detect(grayFrame, keypoints_1 );
+//            sift->detect(grayFrame, keypoints_1);
 //            // Calculate the descriptors
 //            sift->compute(grayFrame, keypoints_1, descriptors_1);
 //            // Draw Keypoints
