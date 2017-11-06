@@ -1,15 +1,23 @@
 #ifndef HANDFEATUREEXTRACTION_H
 #define HANDFEATUREEXTRACTION_H
 
+#include <opencv2/opencv.hpp>
+//Background Subtractor
+#include "backgroundsubtraction.h"
+
 
 class HandFeatureExtraction
 {
 private:
-    vector<KeyPoint> keypoints_1;
-     Mat img_keypoints_1;
+    std::vector<cv::KeyPoint> keypoints_1;
+    cv::Mat img_keypoints_1;
+    cv::Mat fgMaskMOG2;
+    BackgroundSubtraction *bs;
+
 public:
     HandFeatureExtraction();
-    // The methods need to have frame as param
+    void sift(cv::Mat frame);
+    void sift_BS(cv::Mat frame);
 };
 
 #endif // HANDFEATUREEXTRACTION_H

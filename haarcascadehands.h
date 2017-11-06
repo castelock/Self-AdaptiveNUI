@@ -7,10 +7,6 @@
 
 class HaarCascadeHands
 {
-public:
-    HaarCascadeHands();
-    void processHaarHandsClassifier(cv::Mat *img, int& cont);
-
 private:
    cv :: Mat *img;
     cv::CascadeClassifier cascade;
@@ -18,6 +14,12 @@ private:
     CvMemStorage *hstorage;
    std:: string hand_cascade_path;
     int key;
+
+public:
+    HaarCascadeHands();
+    void processHaarHandsClassifier(cv::Mat *img, int& cont);
+
+
    // Tools *tool;
     //void detectHands(Mat *img);
 };
