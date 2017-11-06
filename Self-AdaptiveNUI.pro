@@ -26,11 +26,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     backgroundsubtraction.cpp \
     haarcascadehands.cpp \
-    intelligentmodule.cpp
+    intelligentmodule.cpp \
+    handsegmentation.cpp \
+    handfeatureextraction.cpp
 
 HEADERS  += mainwindow.h \
     backgroundsubtraction.h \
     haarcascadehands.h \
-    intelligentmodule.h
+    intelligentmodule.h \
+    handsegmentation.h \
+    handfeatureextraction.h
 
 FORMS    += mainwindow.ui
